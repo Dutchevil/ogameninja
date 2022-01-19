@@ -19,6 +19,7 @@ logDiscord          = true
 //            (don't change if you don't know what you doing
 
 interval = Random(minutes_min*60*1000, minutes_max*60*1000) // 60-90min
+b = GetBotByID(BotID)
 
 func doLogging(msg, loglevel) {
     switch loglevel {
@@ -52,7 +53,7 @@ for {
         })
         key = galaxy+":"+system
         if data[key] != nil && data[key] != arr {
-            doLogging("New/Removed planets in "+key, "info")
+            doLogging(b.GetUniverse()+"-"+b.GetLang()+"|"+b.GetPlayerName()+ " New/Removed planets in "+key, "info")
         }
         data[key] = arr
     }
