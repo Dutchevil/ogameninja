@@ -6,7 +6,7 @@
 
 
 
-//############################### Settings ###############################
+//############################### Settings ############################### 
 
 // #### time settings ####
 minutes_min = 60
@@ -28,10 +28,11 @@ toBuild = {
 
 
 
-//############################### Functions ###############################
+//############################### Functions ############################### 
 //            (don't change if you don't know what you doing
 
 planetsToBuildOn = GetPlanets()
+b = GetBotByID(BotID)
 
 func millisecondsToTime(milliseconds) {
     minutes = (milliseconds / 1000) / 60;
@@ -69,15 +70,15 @@ for {
                 if canBuild > nbrToBuild {
                     canBuild = nbrToBuild
                 }
-                doLogging("Building: "+canBuild+"/"+nbrToBuild+" "+ID2Str(unitID)+" on "+planet, "info")
+                doLogging(b.GetUniverse()+"-"+b.GetLang()+"|"+b.GetPlayerName()+" Building: "+canBuild+"/"+nbrToBuild+" "+ID2Str(unitID)+" on "+planet, "info")
                 Build(planetCelestial.GetID(), unitID, canBuild)
             } else {
-                doLogging("Not enough resources on "+planet+" to build at least 1 of "+nbrToBuild+" "+ID2Str(unitID), "warn")
+                doLogging(b.GetUniverse()+"-"+b.GetLang()+"|"+b.GetPlayerName()+" Not enough resources on "+planet+" to build at least 1 of "+nbrToBuild+" "+ID2Str(unitID), "warn")
             }
         }
     }
     interval = Random(minutes_min*60*1000, minutes_max*60*1000) // 60-90min
     timeleft = (interval / 1000)
-    doLogging("All ships built. Resume in " + ShortDur(timeleft), "info")
+    doLogging(b.GetUniverse()+"-"+b.GetLang()+"|"+b.GetPlayerName()+" All ships built. Resume in " + ShortDur(timeleft), "info")
     Sleep(interval)
 }
