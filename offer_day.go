@@ -34,8 +34,6 @@ func doLogging(msg, loglevel) {
     }
 }
 
-
-
 func callback() {
     SleepRandMin(10, 50) // Pause execution for a random duration between 10min to 50min
     err = BuyOfferOfTheDay()
